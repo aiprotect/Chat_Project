@@ -1,0 +1,103 @@
+2025-07-11 04:20:01,024 | INFO | 0.0.0.0 | anonymous | Watching for file changes with StatReloader
+2025-07-11 04:20:10,068 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/ 200 [0.03, 127.0.0.1:49082][0m
+2025-07-11 04:20:10,252 | WARNING | 0.0.0.0 | anonymous | Not Found: /favicon.ico
+2025-07-11 04:20:24,357 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/login/ 200 [0.02, 127.0.0.1:56794][0m
+2025-07-11 04:20:38,108 | INFO | 0.0.0.0 | anonymous | [32mHTTP GET /en/admin/ 302 [0.08, 127.0.0.1:56794][0m
+2025-07-11 04:20:38,410 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/admin/login/?next=/en/admin/ 200 [0.29, 127.0.0.1:56794][0m
+2025-07-11 04:20:38,514 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /static/admin/css/base.css 200 [0.02, 127.0.0.1:56794][0m
+2025-07-11 04:20:38,515 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /static/admin/css/login.css 200 [0.02, 127.0.0.1:36102][0m
+2025-07-11 04:20:38,517 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /static/admin/css/responsive.css 200 [0.02, 127.0.0.1:36104][0m
+2025-07-11 04:20:38,518 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /static/admin/css/nav_sidebar.css 200 [0.02, 127.0.0.1:36090][0m
+2025-07-11 04:20:38,520 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /static/admin/css/dark_mode.css 200 [0.02, 127.0.0.1:36080][0m
+2025-07-11 04:20:38,651 | INFO | 0.0.0.0 | anonymous | [36mHTTP GET /static/admin/js/nav_sidebar.js 304 [0.00, 127.0.0.1:36080][0m
+2025-07-11 04:20:38,654 | INFO | 0.0.0.0 | anonymous | [36mHTTP GET /static/admin/js/theme.js 304 [0.01, 127.0.0.1:36104][0m
+2025-07-11 04:20:39,417 | WARNING | 0.0.0.0 | anonymous | Forbidden: /en/admin/login/
+2025-07-11 04:20:39,417 | WARNING | 0.0.0.0 | anonymous | [31;1mHTTP POST /en/admin/login/?next=/en/admin/ 403 [0.00, 127.0.0.1:56794][0m
+2025-07-11 04:20:58,551 | INFO | 0.0.0.0 | anonymous | [32mHTTP GET /en/admin/ 302 [0.01, 127.0.0.1:49942][0m
+2025-07-11 04:22:15,190 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/admin/login/?next=/en/admin/ 200 [0.01, 127.0.0.1:52636][0m
+2025-07-11 04:22:16,629 | WARNING | 0.0.0.0 | anonymous | Forbidden: /en/admin/login/
+2025-07-11 04:22:16,630 | WARNING | 0.0.0.0 | anonymous | [31;1mHTTP POST /en/admin/login/?next=/en/admin/ 403 [0.00, 127.0.0.1:52636][0m
+2025-07-11 04:22:18,287 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/admin/login/?next=/en/admin/ 200 [0.01, 127.0.0.1:52636][0m
+2025-07-11 04:22:19,978 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/admin/login/?next=/en/admin/ 200 [0.01, 127.0.0.1:52636][0m
+2025-07-11 04:22:21,082 | WARNING | 0.0.0.0 | anonymous | Forbidden: /en/admin/login/
+2025-07-11 04:22:21,083 | WARNING | 0.0.0.0 | anonymous | [31;1mHTTP POST /en/admin/login/?next=/en/admin/ 403 [0.00, 127.0.0.1:52636][0m
+2025-07-11 04:22:44,448 | WARNING | 0.0.0.0 | anonymous | Forbidden: /en/admin/login/
+2025-07-11 04:22:44,449 | WARNING | 0.0.0.0 | anonymous | [31;1mHTTP POST /en/admin/login/?next=/en/admin/ 403 [0.00, 127.0.0.1:52636][0m
+2025-07-11 04:22:46,248 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/admin/login/?next=/en/admin/ 200 [0.01, 127.0.0.1:52636][0m
+2025-07-11 04:22:51,570 | WARNING | 0.0.0.0 | anonymous | Forbidden: /en/admin/login/
+2025-07-11 04:22:51,579 | WARNING | 0.0.0.0 | anonymous | [31;1mHTTP POST /en/admin/login/?next=/en/admin/ 403 [0.02, 127.0.0.1:52636][0m
+2025-07-11 04:22:53,593 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/admin/login/?next=/en/admin/ 200 [0.01, 127.0.0.1:52636][0m
+2025-07-11 04:22:59,239 | WARNING | 0.0.0.0 | anonymous | Forbidden: /en/admin/login/
+2025-07-11 04:22:59,240 | WARNING | 0.0.0.0 | anonymous | [31;1mHTTP POST /en/admin/login/?next=/en/admin/ 403 [0.01, 127.0.0.1:52636][0m
+2025-07-11 04:23:34,755 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/admin/login/?next=/en/admin/ 200 [0.01, 127.0.0.1:52636][0m
+2025-07-11 04:23:35,744 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/admin/login/?next=/en/admin/ 200 [0.01, 127.0.0.1:52070][0m
+2025-07-11 04:23:35,833 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /static/admin/css/base.css 200 [0.03, 127.0.0.1:52070][0m
+2025-07-11 04:23:35,859 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /static/admin/css/dark_mode.css 200 [0.05, 127.0.0.1:52072][0m
+2025-07-11 04:23:35,894 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /static/admin/js/theme.js 200 [0.06, 127.0.0.1:52080][0m
+2025-07-11 04:23:35,912 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /static/admin/css/nav_sidebar.css 200 [0.06, 127.0.0.1:52092][0m
+2025-07-11 04:23:35,919 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /static/admin/js/nav_sidebar.js 200 [0.04, 127.0.0.1:52072][0m
+2025-07-11 04:23:35,923 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /static/admin/css/login.css 200 [0.04, 127.0.0.1:52070][0m
+2025-07-11 04:23:35,928 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /static/admin/css/responsive.css 200 [0.03, 127.0.0.1:52100][0m
+2025-07-11 04:23:36,114 | WARNING | 0.0.0.0 | anonymous | Not Found: /favicon.ico
+2025-07-11 04:23:36,118 | WARNING | 0.0.0.0 | anonymous | [33mHTTP GET /favicon.ico 404 [0.06, 127.0.0.1:52100][0m
+2025-07-11 04:23:42,685 | WARNING | 0.0.0.0 | anonymous | Forbidden: /en/admin/login/
+2025-07-11 04:23:42,686 | WARNING | 0.0.0.0 | anonymous | [31;1mHTTP POST /en/admin/login/?next=/en/admin/ 403 [0.00, 127.0.0.1:52070][0m
+2025-07-11 04:26:25,910 | INFO | 0.0.0.0 | anonymous | /home/shayan/PycharmProjects/Chat-Box/Chat_Project/security_app/super_middleware.py changed, reloading.
+2025-07-11 04:26:29,478 | INFO | 0.0.0.0 | anonymous | Watching for file changes with StatReloader
+2025-07-11 04:26:36,822 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/admin/login/?next=/en/admin/ 200 [0.29, 127.0.0.1:49598][0m
+2025-07-11 04:26:40,020 | INFO | 0.0.0.0 | anonymous | [mHTTP POST /en/admin/login/?next=/en/admin/ 200 [1.83, 127.0.0.1:45720][0m
+2025-07-11 04:26:48,873 | INFO | 0.0.0.0 | anonymous | [32mHTTP POST /en/admin/login/?next=/en/admin/ 302 [2.64, 127.0.0.1:45720][0m
+2025-07-11 04:26:49,115 | WARNING | 0.0.0.0 | anonymous | Forbidden: /en/admin/
+2025-07-11 04:26:49,117 | WARNING | 0.0.0.0 | anonymous | [31;1mHTTP GET /en/admin/ 403 [0.14, 127.0.0.1:45720][0m
+2025-07-11 04:26:49,486 | WARNING | 0.0.0.0 | anonymous | Forbidden: /favicon.ico
+2025-07-11 04:26:49,487 | WARNING | 0.0.0.0 | anonymous | [31;1mHTTP GET /favicon.ico 403 [0.02, 127.0.0.1:45720][0m
+2025-07-11 04:26:59,660 | INFO | 0.0.0.0 | anonymous | /home/shayan/PycharmProjects/Chat-Box/Chat_Project/security_app/super_middleware.py changed, reloading.
+2025-07-11 04:27:02,715 | INFO | 0.0.0.0 | anonymous | Watching for file changes with StatReloader
+2025-07-11 04:27:09,637 | WARNING | 0.0.0.0 | anonymous | Forbidden (CSRF token from POST incorrect.): /en/admin/login/
+2025-07-11 04:27:09,640 | WARNING | 0.0.0.0 | anonymous | [31;1mHTTP POST /en/admin/login/?next=/en/admin/ 403 [0.02, 127.0.0.1:39226][0m
+2025-07-11 04:27:12,475 | WARNING | 0.0.0.0 | anonymous | Forbidden (CSRF token from POST incorrect.): /en/admin/login/
+2025-07-11 04:27:12,477 | WARNING | 0.0.0.0 | anonymous | [31;1mHTTP POST /en/admin/login/?next=/en/admin/ 403 [0.01, 127.0.0.1:39226][0m
+2025-07-11 04:27:13,437 | INFO | 0.0.0.0 | anonymous | [32mHTTP GET /en/admin/login/?next=/en/admin/ 302 [0.02, 127.0.0.1:39226][0m
+2025-07-11 04:27:16,902 | INFO | 0.0.0.0 | anonymous | [32mHTTP GET / 302 [0.02, 127.0.0.1:39226][0m
+2025-07-11 04:27:16,950 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/ 200 [0.04, 127.0.0.1:39226][0m
+2025-07-11 04:29:59,760 | INFO | 0.0.0.0 | anonymous | /home/shayan/PycharmProjects/Chat-Box/Chat_Project/security_app/monitoring.py changed, reloading.
+2025-07-11 04:32:28,426 | INFO | 0.0.0.0 | anonymous | Watching for file changes with StatReloader
+2025-07-11 04:32:32,914 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/ 200 [0.22, 127.0.0.1:46244][0m
+2025-07-11 04:37:16,957 | INFO | 0.0.0.0 | anonymous | /home/shayan/PycharmProjects/Chat-Box/Chat_Project/Chat_Project/settings.py changed, reloading.
+2025-07-11 04:38:04,464 | INFO | 0.0.0.0 | anonymous | Watching for file changes with StatReloader
+2025-07-11 04:38:09,068 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/ 200 [0.24, 127.0.0.1:43450][0m
+2025-07-11 04:38:14,040 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/ 200 [0.01, 127.0.0.1:43450][0m
+2025-07-11 04:38:14,342 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/ 200 [0.03, 127.0.0.1:43450][0m
+2025-07-11 04:38:14,588 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/ 200 [0.02, 127.0.0.1:43450][0m
+2025-07-11 04:38:14,752 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/ 200 [0.06, 127.0.0.1:43450][0m
+2025-07-11 04:39:17,036 | INFO | 0.0.0.0 | anonymous | /home/shayan/PycharmProjects/Chat-Box/Chat_Project/Chat_Project/settings.py changed, reloading.
+2025-07-11 04:39:19,283 | INFO | 0.0.0.0 | anonymous | Watching for file changes with StatReloader
+2025-07-11 04:39:37,175 | INFO | 0.0.0.0 | anonymous | /home/shayan/PycharmProjects/Chat-Box/Chat_Project/Chat_Project/settings.py changed, reloading.
+2025-07-11 04:39:38,386 | INFO | 0.0.0.0 | anonymous | Watching for file changes with StatReloader
+2025-07-11 04:39:42,692 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/ 200 [0.29, 127.0.0.1:44340][0m
+2025-07-11 05:30:37,036 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/ 200 [0.18, 127.0.0.1:55866][0m
+2025-07-11 05:30:41,549 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/ 200 [0.09, 127.0.0.1:56212][0m
+2025-07-11 05:30:41,579 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /static/css/index_style.css 200 [0.00, 127.0.0.1:56212][0m
+2025-07-11 05:30:41,588 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /static/images/photo-1633356122544-f134324a6cee.avif 200 [0.01, 127.0.0.1:56216][0m
+2025-07-11 05:30:41,667 | WARNING | 0.0.0.0 | admin | Not Found: /favicon.ico
+2025-07-11 05:30:41,668 | WARNING | 0.0.0.0 | anonymous | [33mHTTP GET /favicon.ico 404 [0.07, 127.0.0.1:56216][0m
+2025-07-11 05:30:51,263 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/ 200 [0.05, 127.0.0.1:56216][0m
+2025-07-11 05:30:55,549 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/ 200 [0.04, 127.0.0.1:32832][0m
+2025-07-11 05:30:55,576 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /static/css/index_style.css 200 [0.00, 127.0.0.1:32832][0m
+2025-07-11 05:30:55,581 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /static/images/photo-1633356122544-f134324a6cee.avif 200 [0.00, 127.0.0.1:32842][0m
+2025-07-11 05:30:55,694 | WARNING | 0.0.0.0 | admin | Not Found: /favicon.ico
+2025-07-11 05:30:55,695 | WARNING | 0.0.0.0 | anonymous | [33mHTTP GET /favicon.ico 404 [0.11, 127.0.0.1:32842][0m
+2025-07-11 05:32:22,662 | INFO | 0.0.0.0 | anonymous | /home/shayan/PycharmProjects/Chat-Box/Chat_Project/security_app/logging_middleware.py changed, reloading.
+2025-07-11 05:32:24,025 | INFO | 0.0.0.0 | anonymous | Watching for file changes with StatReloader
+2025-07-11 05:32:32,720 | INFO | 0.0.0.0 | anonymous | /home/shayan/PycharmProjects/Chat-Box/Chat_Project/Chat_Project/settings.py changed, reloading.
+2025-07-11 05:32:34,480 | INFO | 0.0.0.0 | anonymous | Watching for file changes with StatReloader
+2025-07-11 05:32:39,661 | INFO | 0.0.0.0 | anonymous | Request started | GET /en/ | User: admin | IP: 127.0.0.1
+2025-07-11 05:32:39,785 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/ 200 [0.16, 127.0.0.1:35800][0m
+2025-07-11 05:32:47,331 | INFO | 0.0.0.0 | anonymous | Request started | GET /en/ | User: admin | IP: 127.0.0.1
+2025-07-11 05:32:47,338 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /en/ 200 [0.11, 127.0.0.1:32918][0m
+2025-07-11 05:32:47,446 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /static/css/index_style.css 200 [0.04, 127.0.0.1:32918][0m
+2025-07-11 05:32:47,471 | INFO | 0.0.0.0 | anonymous | [mHTTP GET /static/images/photo-1633356122544-f134324a6cee.avif 200 [0.01, 127.0.0.1:32926][0m
+2025-07-11 05:32:47,530 | INFO | 0.0.0.0 | anonymous | Request started | GET /favicon.ico | User: admin | IP: 127.0.0.1
+2025-07-11 05:32:47,561 | WARNING | 0.0.0.0 | admin | Not Found: /favicon.ico
+2025-07-11 05:32:47,565 | WARNING | 0.0.0.0 | anonymous | [33mHTTP GET /favicon.ico 404 [0.08, 127.0.0.1:32926][0m
+2025-07-11 05:33:45,234 | INFO | 0.0.0.0 | anonymous | /home/shayan/PycharmProjects/Chat-Box/Chat_Project/security_app/monitoring.py changed, reloading.

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/index_style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css">
+{% endblock %}
+
+
+
+{% block content %}
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="mdi mdi-chat"></i>
+                <span>{% trans 'Modern Messenger' %}</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">{% trans 'Home' %}</a></li>
+                    <li><a href="#">{% trans 'Features' %}</a></li>
+                    <li><a href="#">{% trans 'About Us' %}</a></li>
+                    <li><a href="#">{% trans 'Contact Us' %}</a></li>
+                </ul>
+            </nav>
+            <div>
+                {% if not request.user.is_authenticated %}
+                <a href="{% url 'login-name' %}"><button class="btn btn-outline">{% trans 'Login' %}</button></a>
+                <button class="btn btn-primary">{% trans 'Register' %}</button>
+                {% endif %}
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="hero-content">
+                <h1>{% trans 'Simple' %} <span class="text-primary">{% trans 'and' %}</span> <span class="text-primary">{% trans 'Beautiful' %}</span> {% trans 'Communication with Your Loved Ones' %}</h1>
+                <p>{% trans 'Modern Messenger with its contemporary design and advanced features provides you with a delightful experience of connecting with friends and family. Fast, secure, and without limitations.' %}</p>
+<div class="cta-buttons">
+    <a href="{% if request.user.is_authenticated %}{% url 'chat-name' room_id=request.user.id %}{% else %}{% url 'login-name' %}{% endif %}">
+        <button class="btn btn-primary">{% trans 'Get Started' %}</button>
+    </a>
+    <button class="btn btn-outline">{% trans 'About Us' %}</button>
+</div>
+            </div>
+            <div class="hero-image">
+                <img src="/static/images/photo-1633356122544-f134324a6cee.avif" alt="Modern Messenger">
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>{% trans 'Why Choose Modern Messenger?' %}</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="mdi mdi-shield-lock"></i>
+                    </div>
+                    <h3>{% trans 'Superior Security' %}</h3>
+                    <p>{% trans 'All your communications are protected with the latest encryption standards to completely safeguard your privacy.' %}</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="mdi mdi-lightning-bolt"></i>
+                    </div>
+                    <h3>{% trans 'High Speed' %}</h3>
+                    <p>{% trans 'Sending and receiving messages at the highest possible speed, even with weak internet connections.' %}</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="mdi mdi-palette"></i>
+                    </div>
+                    <h3>{% trans 'Beautiful Design' %}</h3>
+                    <p>{% trans 'Modern and minimal user interface that provides you with a delightful experience while using the app.' %}</p>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends 'base.html'%}
+{% load i18n %}
+
+{% block header %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block title%}
+ورود | پیام رسان
+{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="icon" data-savepage-href="https://auth.openai.com/assets/favicon-yEqImUA_.svg"
+    href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMF8xNTIzXzI0MTQpIj4KPHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSIyNTYiIGZpbGw9IndoaXRlIi8+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMV8xNTIzXzI0MTQpIj4KPHBhdGggZD0iTTIxNS45MjMgMjA5LjQyOVYxNzcuMDE0QzIxNS45MjMgMTc0LjI4NCAyMTYuOTQ3IDE3Mi4yMzYgMjE5LjMzNCAxNzAuODcyTDI4NC41MDYgMTMzLjM0QzI5My4zNzggMTI4LjIyMyAzMDMuOTU1IDEyNS44MzUgMzE0Ljg3MiAxMjUuODM1QzM1NS44MTYgMTI1LjgzNSAzODEuNzUgMTU3LjU2OCAzODEuNzUgMTkxLjM0NkMzODEuNzUgMTkzLjczMyAzODEuNzUgMTk2LjQ2MyAzODEuNDA3IDE5OS4xOTNMMzEzLjg0OCAxNTkuNjEzQzMwOS43NTUgMTU3LjIyNSAzMDUuNjU4IDE1Ny4yMjUgMzAxLjU2NCAxNTkuNjEzTDIxNS45MjMgMjA5LjQyOVpNMzY4LjA5OSAzMzUuNjc1VjI1OC4yMkMzNjguMDk5IDI1My40NDIgMzY2LjA1MSAyNTAuMDMgMzYxLjk1OCAyNDcuNjQyTDI3Ni4zMTYgMTk3LjgyN0wzMDQuMjk0IDE4MS43ODlDMzA2LjY4MiAxODAuNDI2IDMwOC43MyAxODAuNDI2IDMxMS4xMTggMTgxLjc4OUwzNzYuMjg5IDIxOS4zMjFDMzk1LjA1NyAyMzAuMjQxIDQwNy42OCAyNTMuNDQyIDQwNy42OCAyNzUuOTZDNDA3LjY4IDMwMS44OTEgMzkyLjMyNyAzMjUuNzc2IDM2OC4wOTkgMzM1LjY3MlYzMzUuNjc1Wk0xOTUuNzkyIDI2Ny40MzRMMTY3LjgxMyAyNTEuMDU3QzE2NS40MjUgMjQ5LjY5NCAxNjQuNDAxIDI0Ny42NDYgMTY0LjQwMSAyNDQuOTE2VjE2OS44NTFDMTY0LjQwMSAxMzMuMzQzIDE5Mi4zOCAxMDUuNzA0IDIzMC4yNTQgMTA1LjcwNEMyNDQuNTg2IDEwNS43MDQgMjU3Ljg5MSAxMTAuNDgyIDI2OS4xNTMgMTE5LjAxMkwyMDEuOTM3IDE1Ny45MUMxOTcuODQzIDE2MC4yOTggMTk1Ljc5NSAxNjMuNzEgMTk1Ljc5NSAxNjguNDg4VjI2Ny40MzdMMTk1Ljc5MiAyNjcuNDM0Wk0yNTYuMDE1IDMwMi4yMzZMMjE1LjkyMyAyNzkuNzE4VjIzMS45NUwyNTYuMDE1IDIwOS40MzJMMjk2LjEwNCAyMzEuOTVWMjc5LjcxOEwyNTYuMDE1IDMwMi4yMzZaTTI4MS43NzYgNDA1Ljk2NEMyNjcuNDQ0IDQwNS45NjQgMjU0LjE0IDQwMS4xODYgMjQyLjg3NyAzOTIuNjU2TDMxMC4wOTQgMzUzLjc1OEMzMTQuMTg3IDM1MS4zNyAzMTYuMjM1IDM0Ny45NTggMzE2LjIzNSAzNDMuMThWMjQ0LjIzMUwzNDQuNTU3IDI2MC42MDhDMzQ2Ljk0NCAyNjEuOTcxIDM0Ny45NjggMjY0LjAxOSAzNDcuOTY4IDI2Ni43NDlWMzQxLjgxM0MzNDcuOTY4IDM3OC4zMjEgMzE5LjY0NyA0MDUuOTYxIDI4MS43NzYgNDA1Ljk2MVY0MDUuOTY0Wk0yMDAuOTA5IDMyOS44NzZMMTM1LjczOCAyOTIuMzQ0QzExNi45NyAyODEuNDI0IDEwNC4zNDcgMjU4LjIyMyAxMDQuMzQ3IDIzNS43MDVDMTA0LjM0NyAyMDkuNDMyIDEyMC4wNDIgMTg1Ljg4OSAxNDQuMjY3IDE3NS45OTNWMjUzLjc4N0MxNDQuMjY3IDI1OC41NjYgMTQ2LjMxNSAyNjEuOTc3IDE1MC40MDkgMjY0LjM2NUwyMzUuNzExIDMxMy44MzhMMjA3LjczMyAzMjkuODc2QzIwNS4zNDUgMzMxLjIzOSAyMDMuMjk3IDMzMS4yMzkgMjAwLjkwOSAzMjkuODc2Wk0xOTcuMTU4IDM4NS44MzNDMTU4LjYwMiAzODUuODMzIDEzMC4yODEgMzU2LjgzIDEzMC4yODEgMzIxLjAwNEMxMzAuMjgxIDMxOC4yNzQgMTMwLjYyMyAzMTUuNTQ0IDEzMC45NjMgMzEyLjgxNEwxOTguMTc5IDM1MS43MTNDMjAyLjI3MyAzNTQuMSAyMDYuMzY5IDM1NC4xIDIxMC40NjMgMzUxLjcxM0wyOTYuMTA0IDMwMi4yNFYzMzQuNjU0QzI5Ni4xMDQgMzM3LjM4NCAyOTUuMDggMzM5LjQzMiAyOTIuNjkzIDM0MC43OTZMMjI3LjUyMSAzNzguMzI4QzIxOC42NDkgMzgzLjQ0NSAyMDguMDcyIDM4NS44MzMgMTk3LjE1NSAzODUuODMzSDE5Ny4xNThaTTI4MS43NzYgNDI2LjQzNEMzMjMuMDYyIDQyNi40MzQgMzU3LjUyMiAzOTcuMDkyIDM2NS4zNzMgMzU4LjE5NEM0MDMuNTg2IDM0OC4yOTggNDI4LjE1MyAzMTIuNDcxIDQyOC4xNTMgMjc1Ljk2M0M0MjguMTUzIDI1Mi4wNzggNDE3LjkxOCAyMjguODc4IDM5OS40OTMgMjEyLjE1OUM0MDEuMTk5IDIwNC45OTMgNDAyLjIyMyAxOTcuODI3IDQwMi4yMjMgMTkwLjY2NEM0MDIuMjIzIDE0MS44NzMgMzYyLjY0MyAxMDUuMzYyIDMxNi45MiAxMDUuMzYyQzMwNy43MDkgMTA1LjM2MiAyOTguODM4IDEwNi43MjUgMjg5Ljk2NiAxMDkuNzk3QzI3NC42MSA5NC43ODM5IDI1My40NTUgODUuMjMwNSAyMzAuMjU0IDg1LjIzMDVDMTg4Ljk2OCA4NS4yMzA1IDE1NC41MDkgMTE0LjU3MiAxNDYuNjU4IDE1My40NzFDMTA4LjQ0NCAxNjMuMzY3IDgzLjg3NyAxOTkuMTkzIDgzLjg3NyAyMzUuNzAxQzgzLjg3NyAyNTkuNTg3IDk0LjExMjEgMjgyLjc4NyAxMTIuNTM3IDI5OS41MDZDMTEwLjgzMSAzMDYuNjcyIDEwOS44MDcgMzEzLjgzOCAxMDkuODA3IDMyMS4wMDFDMTA5LjgwNyAzNjkuNzkyIDE0OS4zODggNDA2LjMwMyAxOTUuMTEgNDA2LjMwM0MyMDQuMzIxIDQwNi4zMDMgMjEzLjE5MyA0MDQuOTQgMjIyLjA2NCA0MDEuODY3QzIzNy40MTcgNDE2Ljg4MSAyNTguNTcyIDQyNi40MzQgMjgxLjc3NiA0MjYuNDM0WiIgZmlsbD0iYmxhY2siLz4KPC9nPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwXzE1MjNfMjQxNCI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iMjU2IiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXAxXzE1MjNfMjQxNCI+CjxyZWN0IHdpZHRoPSIzNDQuMjc2IiBoZWlnaHQ9IjM0MS4yMDQiIGZpbGw9IndoaXRlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4My44NzcgODUuMjMwNSkiLz4KPC9jbGlwUGF0aD4KPC9kZWZzPgo8L3N2Zz4K">
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" data-savepage-href="/assets/favicon-yEqImUA_.svg"
+    href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMF8xNTIzXzI0MTQpIj4KPHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSIyNTYiIGZpbGw9IndoaXRlIi8+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMV8xNTIzXzI0MTQpIj4KPHBhdGggZD0iTTIxNS45MjMgMjA5LjQyOVYxNzcuMDE0QzIxNS45MjMgMTc0LjI4NCAyMTYuOTQ3IDE3Mi4yMzYgMjE5LjMzNCAxNzAuODcyTDI4NC41MDYgMTMzLjM0QzI5My4zNzggMTI4LjIyMyAzMDMuOTU1IDEyNS44MzUgMzE0Ljg3MiAxMjUuODM1QzM1NS44MTYgMTI1LjgzNSAzODEuNzUgMTU3LjU2OCAzODEuNzUgMTkxLjM0NkMzODEuNzUgMTkzLjczMyAzODEuNzUgMTk2LjQ2MyAzODEuNDA3IDE5OS4xOTNMMzEzLjg0OCAxNTkuNjEzQzMwOS43NTUgMTU3LjIyNSAzMDUuNjU4IDE1Ny4yMjUgMzAxLjU2NCAxNTkuNjEzTDIxNS45MjMgMjA5LjQyOVpNMzY4LjA5OSAzMzUuNjc1VjI1OC4yMkMzNjguMDk5IDI1My40NDIgMzY2LjA1MSAyNTAuMDMgMzYxLjk1OCAyNDcuNjQyTDI3Ni4zMTYgMTk3LjgyN0wzMDQuMjk0IDE4MS43ODlDMzA2LjY4MiAxODAuNDI2IDMwOC43MyAxODAuNDI2IDMxMS4xMTggMTgxLjc4OUwzNzYuMjg5IDIxOS4zMjFDMzk1LjA1NyAyMzAuMjQxIDQwNy42OCAyNTMuNDQyIDQwNy42OCAyNzUuOTZDNDA3LjY4IDMwMS44OTEgMzkyLjMyNyAzMjUuNzc2IDM2OC4wOTkgMzM1LjY3MlYzMzUuNjc1Wk0xOTUuNzkyIDI2Ny40MzRMMTY3LjgxMyAyNTEuMDU3QzE2NS40MjUgMjQ5LjY5NCAxNjQuNDAxIDI0Ny42NDYgMTY0LjQwMSAyNDQuOTE2VjE2OS44NTFDMTY0LjQwMSAxMzMuMzQzIDE5Mi4zOCAxMDUuNzA0IDIzMC4yNTQgMTA1LjcwNEMyNDQuNTg2IDEwNS43MDQgMjU3Ljg5MSAxMTAuNDgyIDI2OS4xNTMgMTE5LjAxMkwyMDEuOTM3IDE1Ny45MUMxOTcuODQzIDE2MC4yOTggMTk1Ljc5NSAxNjMuNzEgMTk1Ljc5NSAxNjguNDg4VjI2Ny40MzdMMTk1Ljc5MiAyNjcuNDM0Wk0yNTYuMDE1IDMwMi4yMzZMMjE1LjkyMyAyNzkuNzE4VjIzMS45NUwyNTYuMDE1IDIwOS40MzJMMjk2LjEwNCAyMzEuOTVWMjc5LjcxOEwyNTYuMDE1IDMwMi4yMzZaTTI4MS43NzYgNDA1Ljk2NEMyNjcuNDQ0IDQwNS45NjQgMjU0LjE0IDQwMS4xODYgMjQyLjg3NyAzOTIuNjU2TDMxMC4wOTQgMzUzLjc1OEMzMTQuMTg3IDM1MS4zNyAzMTYuMjM1IDM0Ny45NTggMzE2LjIzNSAzNDMuMThWMjQ0LjIzMUwzNDQuNTU3IDI2MC42MDhDMzQ2Ljk0NCAyNjEuOTcxIDM0Ny45NjggMjY0LjAxOSAzNDcuOTY4IDI2Ni43NDlWMzQxLjgxM0MzNDcuOTY4IDM3OC4zMjEgMzE5LjY0NyA0MDUuOTYxIDI4MS43NzYgNDA1Ljk2MVY0MDUuOTY0Wk0yMDAuOTA5IDMyOS44NzZMMTM1LjczOCAyOTIuMzQ0QzExNi45NyAyODEuNDI0IDEwNC4zNDcgMjU4LjIyMyAxMDQuMzQ3IDIzNS43MDVDMTA0LjM0NyAyMDkuNDMyIDEyMC4wNDIgMTg1Ljg4OSAxNDQuMjY3IDE3NS45OTNWMjUzLjc4N0MxNDQuMjY3IDI1OC41NjYgMTQ2LjMxNSAyNjEuOTc3IDE1MC40MDkgMjY0LjM2NUwyMzUuNzExIDMxMy44MzhMMjA3LjczMyAzMjkuODc2QzIwNS4zNDUgMzMxLjIzOSAyMDMuMjk3IDMzMS4yMzkgMjAwLjkwOSAzMjkuODc2Wk0xOTcuMTU4IDM4NS44MzNDMTU4LjYwMiAzODUuODMzIDEzMC4yODEgMzU2LjgzIDEzMC4yODEgMzIxLjAwNEMxMzAuMjgxIDMxOC4yNzQgMTMwLjYyMyAzMTUuNTQ0IDEzMC45NjMgMzEyLjgxNEwxOTguMTc5IDM1MS43MTNDMjAyLjI3MyAzNTQuMSAyMDYuMzY5IDM1NC4xIDIxMC40NjMgMzUxLjcxM0wyOTYuMTA0IDMwMi4yNFYzMzQuNjU0QzI5Ni4xMDQgMzM3LjM4NCAyOTUuMDggMzM5LjQzMiAyOTIuNjkzIDM0MC43OTZMMjI3LjUyMSAzNzguMzI4QzIxOC42NDkgMzgzLjQ0NSAyMDguMDcyIDM4NS44MzMgMTk3LjE1NSAzODUuODMzSDE5Ny4xNThaTTI4MS43NzYgNDI2LjQzNEMzMjMuMDYyIDQyNi40MzQgMzU3LjUyMiAzOTcuMDkyIDM2NS4zNzMgMzU4LjE5NEM0MDMuNTg2IDM0OC4yOTggNDI4LjE1MyAzMTIuNDcxIDQyOC4xNTMgMjc1Ljk2M0M0MjguMTUzIDI1Mi4wNzggNDE3LjkxOCAyMjguODc4IDM5OS40OTMgMjEyLjE1OUM0MDEuMTk5IDIwNC45OTMgNDAyLjIyMyAxOTcuODI3IDQwMi4yMjMgMTkwLjY2NEM0MDIuMjIzIDE0MS44NzMgMzYyLjY0MyAxMDUuMzYyIDMxNi45MiAxMDUuMzYyQzMwNy43MDkgMTA1LjM2MiAyOTguODM4IDEwNi43MjUgMjg5Ljk2NiAxMDkuNzk3QzI3NC42MSA5NC43ODM5IDI1My40NTUgODUuMjMwNSAyMzAuMjU0IDg1LjIzMDVDMTg4Ljk2OCA4NS4yMzA1IDE1NC41MDkgMTE0LjU3MiAxNDYuNjU4IDE1My40NzFDMTA4LjQ0NCAxNjMuMzY3IDgzLjg3NyAxOTkuMTkzIDgzLjg3NyAyMzUuNzAxQzgzLjg3NyAyNTkuNTg3IDk0LjExMjEgMjgyLjc4NyAxMTIuNTM3IDI5OS41MDZDMTEwLjgzMSAzMDYuNjcyIDEwOS44MDcgMzEzLjgzOCAxMDkuODA3IDMyMS4wMDFDMTA5LjgwNyAzNjkuNzkyIDE0OS4zODggNDA2LjMwMyAxOTUuMTEgNDA2LjMwM0MyMDQuMzIxIDQwNi4zMDMgMjEzLjE5MyA0MDQuOTQgMjIyLjA2NCA0MDEuODY3QzIzNy40MTcgNDE2Ljg4MSAyNTguNTcyIDQyNi40MzQgMjgxLjc3NiA0MjYuNDM0WiIgZmlsbD0iYmxhY2siLz4KPC9nPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwXzE1MjNfMjQxNCI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iMjU2IiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXAxXzE1MjNfMjQxNCI+CjxyZWN0IHdpZHRoPSIzNDQuMjc2IiBoZWlnaHQ9IjM0MS4yMDQiIGZpbGw9IndoaXRlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4My44NzcgODUuMjMwNSkiLz4KPC9jbGlwUGF0aD4KPC9kZWZzPgo8L3N2Zz4K">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% include 'accounts/components/style_components.html'%}
+  <meta name="savepage-state"
+    content="Basic Items; Retain cross-origin frames; Merge CSS images; Remove unsaved URLs; Load lazy content - scroll steps = 0.2s; Load lazy images in existing content; Max frame depth = 5; Max resource size = 50MB; Max resource time = 10s;">
+</head>
+
+<body class="_brandingChatGPT_1hksy_1">
+  <script data-savepage-type="" type="text/plain" nonce=""></script>
+
+
+  <div class="_root_208f1_46">
+    <div class="_titleBlock_208f1_56">
+      <h1 class="_heading_208f1_66">
+        <span class="_root_xeddl_1">{% trans 'خوش آمدید' %}</span>
+      </h1>
+    </div>
+
+    <fieldset class="_root_17li2_1">
+      <form method="post" action="{% url 'login-name'%}" class="_root_14v9i_1" aria-label="Pick a log in option" id=":r1:" autocomplete="on" data-discover="true">
+        {% csrf_token %}
+
+        <div class="_section_14v9i_7 _fields_14v9i_40">
+
+          <!-- Username/Email Field -->
+          <div class="form-field">
+            {{ form.email_or_username }}
+            <label for="{{ form.username.id_for_label }}" class="form-label"></label>
+            {% if form.username_or_email.errors %}
+              <div class="form-errors">
+                {% for error in form.username_or_email.errors %}
+                  <span class="error">{{ error }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+
+          <!-- Password Field -->
+          <div class="form-field">
+            {{ form.password }}
+            <label for="{{ form.password.id_for_label }}" class="form-label"></label>
+            {% if form.password.errors %}
+              <div class="form-errors">
+                {% for error in form.password.errors %}
+                  <span class="error">{{ error }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+          
+          <!-- Remember Me & Forgot Password -->
+          <div class="mb-4 d-flex justify-content-between align-items-center">
+            <div class="form-check">
+              {{ form.remember_me }}
+              <label class="form-check-label" for="id_remember_me">
+                <span class="ms-2">{% trans 'مرا به خاطر بسپار' %}</span>
+              </label>
+            </div>
+            <div>
+              <a href="" class="text-decoration-none">{% trans 'فراموشی رمز عبور ؟' %}</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="_section_14v9i_7 _ctas_14v9i_13">
+          <button class="_root_79e1v_50 _primary_79e1v_85" aria-describedby="" aria-disabled="false" type="submit" name="intent" value="email">{% trans 'ورود' %}</button>
+
+          <!-- Sign Up Prompt -->
+          <span class="_base_1w9eg_57 _normal_1w9eg_80 _primary_1w9eg_98">
+            {% trans 'حساب کاربری ندارید ؟' %}
+            <a data-discover="true" data-savepage-href="/create-account" href="#">{%  trans 'ثبت نام کنید' %}</a>
+          </span>
+
+          <!-- Divider -->
+          <div class="_root_1lvsi_1">
+            <div class="_line_1lvsi_7"></div>
+            <div class="_name_1lvsi_12">{% trans 'یا' %}</div>
+            <div class="_line_1lvsi_7"></div>
+          </div>
+
+          <!-- Google Login Button -->
+          <div class="_root_3tpcp_1">
+            <button class="_root_79e1v_50 _leftAlign_79e1v_81 _outline_79e1v_93" aria-describedby="" aria-disabled="false" form=":r0:" name="intent" value="google">
+              <div class="_decoration_79e1v_111">
+                <div class="_logoPositioner_gdh4y_1">
+                  <img data-savepage-currentsrc="https://auth.openai.com/assets/google-logo-NePEveMl.svg" data-savepage-src="/assets/google-logo-NePEveMl.svg" src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0yMi41NiAxMi4yNWMwLS43OC0uMDctMS41My0uMi0yLjI1SDEydjQuMjZoNS45MmMtLjI2IDEuMzctMS4wNCAyLjUzLTIuMjEgMy4zMXYyLjc3aDMuNTdjMi4wOC0xLjkyIDMuMjgtNC43NCAzLjI4LTguMDl6IiBmaWxsPSIjNDI4NUY0Ii8+PHBhdGggZD0iTTEyIDIzYzIuOTcgMCA1LjQ2LS45OCA3LjI4LTIuNjZsLTMuNTctMi43N2MtLjk4LjY2LTIuMjMgMS4wNi0zLjcxIDEuMDYtMi44NiAwLTUuMjktMS45My02LjE2LTQuNTNIMi4xOHYyLjg0QzMuOTkgMjAuNTMgNy43IDIzIDEyIDIzeiIgZmlsbD0iIzM0QTg1MyIvPjxwYXRoIGQ9Ik01Ljg0IDE0LjA5Yy0uMjItLjY2LS4zNS0xLjM2LS4zNS0yLjA5cy4xMy0xLjQzLjM1LTIuMDlWNy4wN0gyLjE4QzEuNDMgOC41NSAxIDEwLjIyIDEgMTJzLjQzIDMuNDUgMS4xOCA0LjkzbDIuODUtMi4yMi44MS0uNjJ6IiBmaWxsPSIjRkJCQzA1Ii8+PHBhdGggZD0iTTEyIDUuMzhjMS42MiAwIDMuMDYuNTYgNC4yMSAxLjY0bDMuMTUtMy4xNUMxNy40NSAyLjA5IDE0Ljk3IDEgMTIgMSA3LjcgMSAzLjk5IDMuNDcgMi4xOCA3LjA3bDMuNjYgMi44NGMuODctMi42IDMuMy00LjUzIDYuMTYtNC41M3oiIGZpbGw9IiNFQTQzMzUiLz48cGF0aCBkPSJNMSAxaDIydjIySDF6IiBmaWxsPSJub25lIi8+Cjwvc3ZnPgo=" width="16" height="16" alt="Google logo" class="_root_jbbqu_1">
+                </div>
+              </div>
+                {% trans 'ورود با گوگل' %}
+            </button>
+          </div>
+        </div>
+      </form>
+    </fieldset>
+    {{ form.captcha }}
+  </div>
+
+  <!-- Hidden Google Auth Form -->
+  <form method="post" action="/log-in" id=":r0:" hidden="" data-discover="true"></form>
+</body>
+
+
+</html>
+{% endblock %}

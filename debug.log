@@ -1,0 +1,169 @@
+[35;1mHTTP GET / 500 [0.71, 127.0.0.1:53068][0m
+[35;1mHTTP GET / 500 [0.62, 127.0.0.1:53074][0m
+[35;1mHTTP GET / 500 [0.19, 127.0.0.1:53088][0m
+[35;1mHTTP GET / 500 [0.92, 127.0.0.1:57866][0m
+Internal Server Error: /en/
+Traceback (most recent call last):
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 253, in _get_response_async
+    response = await wrapped_callback(
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/asgiref/sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/asgiref/current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/asgiref/sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/views/generic/base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/index/views.py", line 13, in get
+    return render(request, 'index/index_page.html', context=context)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 173, in render
+    with context.bind_template(self):
+  File "/usr/lib/python3.9/contextlib.py", line 119, in __enter__
+    return next(self.gen)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/template/context.py", line 254, in bind_template
+    updates.update(processor(self.request))
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/core/context_processors.py", line 5, in direction
+    'is_rtl' : request.LANGUAGE_CODE in settings.RTL_LANGUAGES
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/conf/__init__.py", line 104, in __getattr__
+    val = getattr(_wrapped, name)
+AttributeError: 'Settings' object has no attribute 'RTL_LANGUAGES'
+[35;1mHTTP GET /en/ 500 [0.38, 127.0.0.1:53268][0m
+Not Found: /favicon.ico
+[33mHTTP GET /favicon.ico 404 [0.02, 127.0.0.1:53268][0m
+Internal Server Error: /en/
+Traceback (most recent call last):
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 253, in _get_response_async
+    response = await wrapped_callback(
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/asgiref/sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/asgiref/current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/asgiref/sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/views/generic/base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/index/views.py", line 13, in get
+    return render(request, 'index/index_page.html', context=context)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 173, in render
+    with context.bind_template(self):
+  File "/usr/lib/python3.9/contextlib.py", line 119, in __enter__
+    return next(self.gen)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/template/context.py", line 254, in bind_template
+    updates.update(processor(self.request))
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/core/context_processors.py", line 5, in direction
+    'is_rtl' : request.LANGUAGE_CODE in settings.RTL_LANGUAGES
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/conf/__init__.py", line 104, in __getattr__
+    val = getattr(_wrapped, name)
+AttributeError: 'Settings' object has no attribute 'RTL_LANGUAGES'
+[35;1mHTTP GET /en/ 500 [0.07, 127.0.0.1:46512][0m
+Internal Server Error: /en/
+Traceback (most recent call last):
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 253, in _get_response_async
+    response = await wrapped_callback(
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/asgiref/sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/asgiref/current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/asgiref/sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/views/generic/base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/index/views.py", line 13, in get
+    return render(request, 'index/index_page.html', context=context)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 173, in render
+    with context.bind_template(self):
+  File "/usr/lib/python3.9/contextlib.py", line 119, in __enter__
+    return next(self.gen)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/template/context.py", line 254, in bind_template
+    updates.update(processor(self.request))
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/core/context_processors.py", line 5, in direction
+    'is_rtl' : request.LANGUAGE_CODE in settings.RTL_LANGUAGES
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/conf/__init__.py", line 104, in __getattr__
+    val = getattr(_wrapped, name)
+AttributeError: 'Settings' object has no attribute 'RTL_LANGUAGES'
+[35;1mHTTP GET /en/ 500 [0.18, 127.0.0.1:46512][0m
+Not Found: /favicon.ico
+Internal Server Error: /en/
+Traceback (most recent call last):
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/asgiref/sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = await get_response(request)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 253, in _get_response_async
+    response = await wrapped_callback(
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/asgiref/sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/asgiref/current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/asgiref/sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/views/generic/base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/index/views.py", line 13, in get
+    return render(request, 'index/index_page.html', context=context)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 173, in render
+    with context.bind_template(self):
+  File "/usr/lib/python3.9/contextlib.py", line 119, in __enter__
+    return next(self.gen)
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/template/context.py", line 254, in bind_template
+    updates.update(processor(self.request))
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/core/context_processors.py", line 5, in direction
+    'is_rtl' : request.LANGUAGE_CODE in settings.RTL_LANGUAGES
+  File "/home/shayan/PycharmProjects/Chat-Box/Chat_Project/venv/lib/python3.9/site-packages/django/conf/__init__.py", line 104, in __getattr__
+    val = getattr(_wrapped, name)
+AttributeError: 'Settings' object has no attribute 'RTL_LANGUAGES'
+[35;1mHTTP GET /en/ 500 [0.05, 127.0.0.1:46512][0m
+Forbidden: /fa/login/
+[31;1mHTTP POST /fa/login/ 403 [0.00, 127.0.0.1:53976][0m
+Forbidden: /fa/login/
+[31;1mHTTP POST /fa/login/ 403 [0.00, 127.0.0.1:53976][0m
+Forbidden: /fa/login/
+[31;1mHTTP POST /fa/login/ 403 [0.00, 127.0.0.1:53976][0m
+Forbidden: /fa/login/
+[31;1mHTTP POST /fa/login/ 403 [0.00, 127.0.0.1:53976][0m
+Forbidden: /fa/login/
+[31;1mHTTP POST /fa/login/ 403 [0.01, 127.0.0.1:53976][0m

@@ -1,0 +1,178 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-09 22:26+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\Chat_Project\settings.py:89
+msgid "English"
+msgstr "English"
+
+#: .\Chat_Project\settings.py:90
+msgid "Persian"
+msgstr "Persian"
+
+#: .\Chat_Project\settings.py:91
+msgid "Arabic"
+msgstr "Arabic"
+
+#: .\accounts\forms.py:16
+msgid "نام کاربری یا ایمیل خود را وارد کنید"
+msgstr ""
+
+#: .\accounts\forms.py:22 .\accounts\forms.py:30
+msgid "رمز عبور را وارد کنید"
+msgstr ""
+
+#: .\accounts\templates\accounts\login_page.html:34
+msgid "خوش آمدید"
+msgstr "Welcome"
+
+#: .\accounts\templates\accounts\login_page.html:75
+msgid "مرا به خاطر بسپار"
+msgstr "Remember me."
+
+#: .\accounts\templates\accounts\login_page.html:79
+msgid "فراموشی رمز عبور ؟"
+msgstr "Password forgetfulness?"
+
+#: .\accounts\templates\accounts\login_page.html:86
+msgid "ورود"
+msgstr "Login"
+
+#: .\accounts\templates\accounts\login_page.html:90
+msgid "حساب کاربری ندارید ؟"
+msgstr "Don't have an account?"
+
+#: .\accounts\templates\accounts\login_page.html:91
+msgid "ثبت نام کنید"
+msgstr "Sign up"
+
+#: .\accounts\templates\accounts\login_page.html:97
+msgid "یا"
+msgstr "Or"
+
+#: .\accounts\templates\accounts\login_page.html:109
+msgid "ورود با گوگل"
+msgstr "Login with Google"
+
+#: .\chat\templates\chat\room.html:7
+msgid "Quantum chat - Next Generation Messaging"
+msgstr "Quantum chat - Next Generation Messaging"
+
+#: .\chat\templates\chat\room.html:131
+msgid "Quantum chat"
+msgstr "Quantum chat"
+
+#: .\index\templates\index\index_page.html:286
+msgid "Modern Messenger"
+msgstr "Modern Messenger"
+
+#: .\index\templates\index\index_page.html:290
+msgid "Home"
+msgstr "Home"
+
+#: .\index\templates\index\index_page.html:291
+msgid "Features"
+msgstr "Features"
+
+#: .\index\templates\index\index_page.html:292
+#: .\index\templates\index\index_page.html:308
+msgid "About Us"
+msgstr "About Us"
+
+#: .\index\templates\index\index_page.html:293
+msgid "Contact Us"
+msgstr "Contact Us"
+
+#: .\index\templates\index\index_page.html:297
+msgid "Login"
+msgstr "Login"
+
+#: .\index\templates\index\index_page.html:298
+msgid "Register"
+msgstr "Register"
+
+#: .\index\templates\index\index_page.html:304
+msgid "Simple"
+msgstr "Simple"
+
+#: .\index\templates\index\index_page.html:304
+msgid "and"
+msgstr "and"
+
+#: .\index\templates\index\index_page.html:304
+msgid "Beautiful"
+msgstr "Beautiful"
+
+#: .\index\templates\index\index_page.html:304
+msgid "Communication with Your Loved Ones"
+msgstr "Communication with Your Loved Ones"
+
+#: .\index\templates\index\index_page.html:305
+msgid ""
+"Modern Messenger with its contemporary design and advanced features provides "
+"you with a delightful experience of connecting with friends and family. "
+"Fast, secure, and without limitations."
+msgstr ""
+"Modern Messenger with its contemporary design and advanced features provides "
+"you with a delightful experience of connecting with friends and family. "
+"Fast, secure, and without limitations."
+
+#: .\index\templates\index\index_page.html:307
+msgid "Get Started"
+msgstr "Get Started"
+
+#: .\index\templates\index\index_page.html:317
+msgid "Why Choose Modern Messenger?"
+msgstr "Why Choose Modern Messenger?"
+
+#: .\index\templates\index\index_page.html:323
+msgid "Superior Security"
+msgstr "Superior Security"
+
+#: .\index\templates\index\index_page.html:324
+msgid ""
+"All your communications are protected with the latest encryption standards "
+"to completely safeguard your privacy."
+msgstr ""
+"All your communications are protected with the latest encryption standards "
+"to completely safeguard your privacy."
+
+#: .\index\templates\index\index_page.html:330
+msgid "High Speed"
+msgstr "High Speed"
+
+#: .\index\templates\index\index_page.html:331
+msgid ""
+"Sending and receiving messages at the highest possible speed, even with weak "
+"internet connections."
+msgstr ""
+"Sending and receiving messages at the highest possible speed, even with weak "
+"internet connections."
+
+#: .\index\templates\index\index_page.html:337
+msgid "Beautiful Design"
+msgstr "Beautiful Design"
+
+#: .\index\templates\index\index_page.html:338
+msgid ""
+"Modern and minimal user interface that provides you with a delightful "
+"experience while using the app."
+msgstr ""
+"Modern and minimal user interface that provides you with a delightful "
+"experience while using the app."

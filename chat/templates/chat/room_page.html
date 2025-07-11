@@ -1,0 +1,662 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+
+{% block title %}{% trans 'Quantum chat - Next Generation Messaging'%}{% endblock %}
+
+{% block extra_css %}
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/static/js/room_js.js"></script>
+    <link rel="stylesheet" href="/static/css/room_style.css">
+{% endblock %}
+
+{% block extra_js %}
+    <script src="/static/js/room2_js.js"></script>
+{% endblock %}
+
+{% block content %}
+<script>
+    const roomName = "{{ id }}";
+    console.log("Room ID:", roomName);
+
+    const chatSocket = new WebSocket(
+        `ws://${window.location.host}/ws/chat/${roomName}/`
+    );
+</script>
+
+<body class="h-full bg-gray-100 dark:bg-gray-900 transition-colors duration-200">
+    <div class="flex flex-col h-full">
+        <!-- Header -->
+        <header class="bg-white dark:bg-gray-800 shadow-sm z-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 flex items-center">
+                            <svg class="h-8 w-8 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 4C13.0609 4 14.0783 4.42143 14.8284 5.17157C15.5786 5.92172 16 6.93913 16 8V9H8V8C8 6.93913 8.42143 5.92172 9.17157 5.17157C9.92172 4.42143 10.9391 4 12 4Z" fill="currentColor"/>
+                                <path d="M20 9H4C2.89543 9 2 9.89543 2 11V19C2 20.1046 2.89543 21 4 21H20C21.1046 21 22 20.1046 22 19V11C22 9.89543 21.1046 9 20 9Z" fill="currentColor"/>
+                                <path d="M12 14C12.5523 14 13 13.5523 13 13C13 12.4477 12.5523 12 12 12C11.4477 12 11 12.4477 11 13C11 13.5523 11.4477 14 12 14Z" fill="white"/>
+                                <path d="M12 18C12.5523 18 13 17.5523 13 17C13 16.4477 12.5523 16 12 16C11.4477 16 11 16.4477 11 17C11 17.5523 11.4477 18 12 18Z" fill="white"/>
+                            </svg>
+                            <span class="ml-2 text-xl font-bold text-gray-800 dark:text-white">{% trans 'Quantum chat' %}</span>
+                        </div>
+                        <nav class="hidden md:ml-6 md:flex md:space-x-8">
+                            <a href="#" class="border-primary-500 text-gray-900 dark:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                                Chats
+                            </a>
+                            <a href="#" class="border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                                Contacts
+                            </a>
+                            <a href="#" class="border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                                Settings
+                            </a>
+                        </nav>
+                    </div>
+                    <div class="hidden md:ml-4 md:flex md:items-center space-x-4">
+                        <button type="button" class="bg-white dark:bg-gray-700 p-1 rounded-full text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                            <span class="sr-only">View notifications</span>
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                            </svg>
+                        </button>
+
+                        <div class="relative">
+                            <button id="theme-toggle" type="button" class="bg-white dark:bg-gray-700 p-1 rounded-full text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <span class="sr-only">Toggle dark mode</span>
+                                <svg id="theme-toggle-dark-icon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                                </svg>
+                                <svg id="theme-toggle-light-icon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 8 8 0 018-8zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Profile dropdown -->
+                        <div class="ml-3 relative">
+                            <div>
+                                <button type="button" class="max-w-xs bg-white dark:bg-gray-700 flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                                    <span class="sr-only">Open user menu</span>
+                                    <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="-mr-2 flex items-center md:hidden">
+                        <!-- Mobile menu button -->
+                        <button type="button" class="bg-white dark:bg-gray-700 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500" aria-controls="mobile-menu" aria-expanded="false">
+                            <span class="sr-only">Open main menu</span>
+                            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                            <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile menu, show/hide based on menu state. -->
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="pt-2 pb-3 space-y-1">
+                    <a href="#" class="bg-primary-50 border-primary-500 text-primary-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Chats</a>
+                    <a href="#" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Contacts</a>
+                    <a href="#" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Settings</a>
+                </div>
+                <div class="pt-4 pb-3 border-t border-gray-200">
+                    <div class="flex items-center px-4">
+                        <div class="flex-shrink-0">
+                            <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                        </div>
+                        <div class="ml-3">
+                            <div class="text-base font-medium text-gray-800">John Doe</div>
+                            <div class="text-sm font-medium text-gray-500">john@example.com</div>
+                        </div>
+                        <button class="ml-auto bg-white flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                            <span class="sr-only">View notifications</span>
+                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="mt-3 space-y-1">
+                        <a href="#" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Your Profile</a>
+                        <a href="#" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Settings</a>
+                        <a href="#" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Sign out</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="flex flex-1 overflow-hidden">
+            <!-- Sidebar -->
+            <div class="hidden md:flex md:flex-shrink-0">
+                <div class="flex flex-col w-80 border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+                    <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
+                        <div class="px-4">
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <input id="search" name="search" class="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:placeholder-gray-400 dark:focus:placeholder-gray-300 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 sm:text-sm" placeholder="Search" type="search">
+                            </div>
+                        </div>
+
+                        <div class="mt-6 flex-1 px-2 space-y-1">
+                            <div class="px-4 py-2 flex items-center justify-between border-b border-gray-200 dark:border-gray-700">
+                                <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">RECENT CHATS</h3>
+                                <button class="text-primary-600 dark:text-primary-400 text-sm font-medium">New Chat</button>
+                            </div>
+
+                            <!-- chat list -->
+                            <nav class="space-y-1">
+                                <a href="#" class="group flex items-center px-4 py-3 text-sm font-medium rounded-md bg-primary-50 dark:bg-gray-700 text-primary-700 dark:text-white">
+                                    <div class="relative">
+                                        <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                        <span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white bg-green-400"></span>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-sm font-medium">Jane Cooper</p>
+                                            <span class="text-xs text-gray-500 dark:text-gray-400">12:45 PM</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <p class="text-sm text-gray-500 dark:text-gray-300 truncate">Hey, how are you doing?</p>
+                                            <span class="ml-auto inline-block bg-primary-600 text-white text-xs px-1.5 py-0.5 rounded-full">3</span>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="#" class="group flex items-center px-4 py-3 text-sm font-medium rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
+                                    <div class="relative">
+                                        <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                        <span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white bg-gray-300"></span>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-sm font-medium">Michael Smith</p>
+                                            <span class="text-xs text-gray-500 dark:text-gray-400">10:30 AM</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <p class="text-sm text-gray-500 dark:text-gray-300 truncate">Let's meet tomorrow</p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="#" class="group flex items-center px-4 py-3 text-sm font-medium rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
+                                    <div class="relative">
+                                        <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                        <span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white bg-green-400"></span>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-sm font-medium">Alex Johnson</p>
+                                            <span class="text-xs text-gray-500 dark:text-gray-400">Yesterday</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <p class="text-sm text-gray-500 dark:text-gray-300 truncate">Sent you the files</p>
+                                            <svg class="ml-auto h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="#" class="group flex items-center px-4 py-3 text-sm font-medium rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
+                                    <div class="relative">
+                                        <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                        <span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white bg-gray-300"></span>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-sm font-medium">Sarah Williams</p>
+                                            <span class="text-xs text-gray-500 dark:text-gray-400">2 days ago</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <p class="text-sm text-gray-500 dark:text-gray-300 truncate">Thanks for your help!</p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="#" class="group flex items-center px-4 py-3 text-sm font-medium rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
+                                    <div class="relative">
+                                        <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                        <span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white bg-green-400"></span>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-sm font-medium">Emily Davis</p>
+                                            <span class="text-xs text-gray-500 dark:text-gray-400">1 week ago</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <p class="text-sm text-gray-500 dark:text-gray-300 truncate">Check out this link</p>
+                                            <svg class="ml-auto h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </a>
+                            </nav>
+
+                            <div class="px-4 py-2 flex items-center justify-between border-b border-gray-200 dark:border-gray-700">
+                                <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">GROUP CHATS</h3>
+                                <button class="text-primary-600 dark:text-primary-400 text-sm font-medium">New Group</button>
+                            </div>
+
+                            <nav class="space-y-1">
+                                <a href="#" class="group flex items-center px-4 py-3 text-sm font-medium rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
+                                    <div class="relative">
+                                        <div class="h-10 w-10 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-indigo-600 dark:text-indigo-300 font-medium">T</div>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-sm font-medium">Team Project</p>
+                                            <span class="text-xs text-gray-500 dark:text-gray-400">Yesterday</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <p class="text-sm text-gray-500 dark:text-gray-300 truncate">Alex: I'll finish the design</p>
+                                            <span class="ml-auto inline-block bg-primary-600 text-white text-xs px-1.5 py-0.5 rounded-full">5</span>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="#" class="group flex items-center px-4 py-3 text-sm font-medium rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
+                                    <div class="relative">
+                                        <div class="h-10 w-10 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center text-green-600 dark:text-green-300 font-medium">F</div>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-sm font-medium">Family Group</p>
+                                            <span class="text-xs text-gray-500 dark:text-gray-400">2 days ago</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <p class="text-sm text-gray-500 dark:text-gray-300 truncate">Mom: Call me when you can</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- chat area -->
+            <div class="flex flex-col flex-1 overflow-hidden">
+                <div class="relative flex-1 flex flex-col overflow-hidden">
+                    <!-- chat header -->
+                    <div class="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-4 sm:px-6">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-gray-900 dark:text-white">Jane Cooper</p>
+                                    <div class="flex items-center">
+                                        <span class="text-xs text-gray-500 dark:text-gray-400">Online</span>
+                                        <span class="ml-2 inline-block h-2 w-2 rounded-full bg-green-400"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <button type="button" class="inline-flex items-center p-1.5 border border-transparent rounded-full shadow-sm text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v8a2 2 0 01-2 2h-2a2 2 0 01-2-2V6z" />
+                                    </svg>
+                                </button>
+                                <button type="button" class="inline-flex items-center p-1.5 border border-transparent rounded-full shadow-sm text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                                <button type="button" class="inline-flex items-center p-1.5 border border-transparent rounded-full shadow-sm text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                                <button type="button" class="inline-flex items-center p-1.5 border border-transparent rounded-full shadow-sm text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Messages -->
+                    <div class="flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-700 p-4">
+                        <div class="space-y-4">
+                            <!-- Date separator -->
+                            <div class="relative">
+                                <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                                    <div class="w-full border-t border-gray-200 dark:border-gray-600"></div>
+                                </div>
+                                <div class="relative flex justify-center">
+                                    <span class="px-2 bg-gray-50 dark:bg-gray-700 text-xs text-gray-500 dark:text-gray-400">Today</span>
+                                </div>
+                            </div>
+
+                            <!-- Incoming message -->
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                </div>
+                                <div class="ml-3">
+                                    <div class="text-sm font-medium text-gray-900 dark:text-white">Jane Cooper</div>
+                                    <div class="mt-1 text-sm text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 p-3 rounded-lg shadow-sm max-w-xs lg:max-w-md">
+                                        Hey there! How are you doing?
+                                    </div>
+                                    <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                                        12:45 PM
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Outgoing message -->
+                            <div class="flex items-start justify-end">
+                                <div class="mr-3 text-right">
+                                    <div class="text-sm font-medium text-gray-900 dark:text-white">You</div>
+                                    <div class="mt-1 text-sm text-white bg-primary-600 p-3 rounded-lg shadow-sm max-w-xs lg:max-w-md">
+                                        I'm doing great! Just finished that project we were working on.
+                                    </div>
+                                    <div class="mt-1 text-xs text-gray-500 dark:text-gray-400 flex items-center justify-end">
+                                        <span>12:47 PM</span>
+                                        <svg class="ml-1 h-4 w-4 text-primary-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                </div>
+                            </div>
+
+                            <!-- Incoming message with image -->
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                </div>
+                                <div class="ml-3">
+                                    <div class="text-sm font-medium text-gray-900 dark:text-white">Jane Cooper</div>
+                                    <div class="mt-1 bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden max-w-xs lg:max-w-md">
+                                        <img class="w-full" src="https://images.unsplash.com/photo-1520333789090-1afc82db536a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80" alt="">
+                                        <div class="p-3 text-sm text-gray-700 dark:text-gray-300">
+                                            Check out this amazing view from my vacation!
+                                        </div>
+                                    </div>
+                                    <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                                        12:49 PM
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Outgoing message with reply -->
+                            <div class="flex items-start justify-end">
+                                <div class="mr-3 text-right">
+                                    <div class="text-sm font-medium text-gray-900 dark:text-white">You</div>
+                                    <div class="mt-1 bg-gray-100 dark:bg-gray-600 rounded-lg shadow-sm max-w-xs lg:max-w-md overflow-hidden">
+                                        <div class="border-l-4 border-primary-500 bg-white dark:bg-gray-700 p-2 text-xs text-gray-500 dark:text-gray-300">
+                                            <div class="font-medium">Jane Cooper</div>
+                                            <div class="truncate">Check out this amazing view from my vacation!</div>
+                                        </div>
+                                        <div class="p-3 text-sm text-gray-700 dark:text-gray-300">
+                                            Wow! That looks incredible. Where is that?
+                                        </div>
+                                    </div>
+                                    <div class="mt-1 text-xs text-gray-500 dark:text-gray-400 flex items-center justify-end">
+                                        <span>12:51 PM</span>
+                                        <svg class="ml-1 h-4 w-4 text-primary-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                </div>
+                            </div>
+
+                            <!-- Incoming voice message -->
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                </div>
+                                <div class="ml-3">
+                                    <div class="text-sm font-medium text-gray-900 dark:text-white">Jane Cooper</div>
+                                    <div class="mt-1 text-sm text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 p-3 rounded-lg shadow-sm max-w-xs lg:max-w-md flex items-center">
+                                        <button class="flex items-center justify-center bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 rounded-full h-10 w-10">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
+                                        </button>
+                                        <div class="waveform ml-3">
+                                            <div class="waveform-bar"></div>
+                                            <div class="waveform-bar"></div>
+                                            <div class="waveform-bar"></div>
+                                            <div class="waveform-bar"></div>
+                                            <div class="waveform-bar"></div>
+                                            <div class="waveform-bar"></div>
+                                            <div class="waveform-bar"></div>
+                                            <div class="waveform-bar"></div>
+                                        </div>
+                                        <div class="ml-3 text-xs text-gray-500 dark:text-gray-400">0:24</div>
+                                    </div>
+                                    <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                                        12:53 PM
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Typing indicator -->
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                </div>
+                                <div class="ml-3">
+                                    <div class="text-sm font-medium text-gray-900 dark:text-white">Jane Cooper</div>
+                                    <div class="mt-1 text-sm text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 p-3 rounded-lg shadow-sm inline-block">
+                                        <span class="typing-indicator"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Message input -->
+                    <div class="border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 pt-4 pb-4 sm:px-6">
+                        <div class="flex space-x-2">
+                            <div class="flex-shrink-0">
+                                <button type="button" class="inline-flex items-center justify-center rounded-full h-10 w-10 bg-gray-100 dark:bg-gray-700 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="flex-1 relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <input type="text" class="block w-full pl-10 pr-12 py-3 border border-gray-300 dark:border-gray-600 rounded-full bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500 sm:text-sm" placeholder="Type a message">
+                                <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                                    <button type="button" class="inline-flex items-center justify-center rounded-full h-8 w-8 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <button type="button" class="inline-flex items-center justify-center rounded-full h-10 w-10 bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                    <svg class="h-5 w-5 text-white transform rotate-90" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-2 flex justify-between items-center">
+                            <div class="flex space-x-2">
+                                <button type="button" class="inline-flex items-center p-1.5 border border-transparent rounded-full shadow-sm text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                                <button type="button" class="inline-flex items-center p-1.5 border border-transparent rounded-full shadow-sm text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                                <button type="button" class="inline-flex items-center p-1.5 border border-transparent rounded-full shadow-sm text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="text-xs text-gray-500 dark:text-gray-400">
+                                Press Enter to send, Shift+Enter for new line
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User details sidebar -->
+            <div class="hidden lg:flex lg:flex-shrink-0">
+                <div class="flex flex-col w-80 border-l border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+                    <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
+                        <div class="px-4 flex items-center justify-between">
+                            <h2 class="text-lg font-medium text-gray-900 dark:text-white">User Details</h2>
+                            <button type="button" class="inline-flex items-center p-1.5 border border-transparent rounded-full shadow-sm text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="mt-6 flex-1 px-4 space-y-6">
+                            <div class="flex flex-col items-center">
+                                <img class="h-24 w-24 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                <h3 class="mt-3 text-lg font-medium text-gray-900 dark:text-white">Jane Cooper</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Lead UI/UX Designer</p>
+
+                                <div class="mt-2 flex items-center">
+                                    <span class="inline-block h-2 w-2 rounded-full bg-green-400"></span>
+                                    <span class="ml-1 text-xs text-gray-500 dark:text-gray-400">Online</span>
+                                </div>
+
+                                <div class="mt-4 flex space-x-3">
+                                    <button type="button" class="inline-flex items-center px-3 py-1.5 border border-gray-300 dark:border-gray-600 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                        <svg class="-ml-0.5 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v8a2 2 0 01-2 2h-2a2 2 0 01-2-2V6z" />
+                                        </svg>
+                                        Video
+                                    </button>
+                                    <button type="button" class="inline-flex items-center px-3 py-1.5 border border-gray-300 dark:border-gray-600 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                        <svg class="-ml-0.5 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
+                                            <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
+                                        </svg>
+                                        Audio
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div>
+                                    <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">About</h3>
+                                    <p class="mt-1 text-sm text-gray-900 dark:text-white">Creative designer with 5+ years of experience in UI/UX design. Love to travel and take photos.</p>
+                                </div>
+
+                                <div>
+                                    <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Email</h3>
+                                    <p class="mt-1 text-sm text-gray-900 dark:text-white">jane.cooper@example.com</p>
+                                </div>
+
+                                <div>
+                                    <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Phone</h3>
+                                    <p class="mt-1 text-sm text-gray-900 dark:text-white">+1 (555) 123-4567</p>
+                                </div>
+
+                                <div>
+                                    <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Location</h3>
+                                    <p class="mt-1 text-sm text-gray-900 dark:text-white">San Francisco, CA</p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Shared Files</h3>
+                                <ul class="mt-2 border-t border-b border-gray-200 dark:border-gray-700 divide-y divide-gray-200 dark:divide-gray-700">
+                                    <li class="py-3 flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-10 w-10 bg-indigo-100 dark:bg-indigo-900 rounded-md flex items-center justify-center">
+                                                <svg class="h-6 w-6 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                                </svg>
+                                            </div>
+                                            <div class="ml-4">
+                                                <p class="text-sm font-medium text-gray-900 dark:text-white">Project_Proposal.pdf</p>
+                                                <p class="text-sm text-gray-500 dark:text-gray-400">2.4 MB</p>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="ml-2 bg-white dark:bg-gray-700 rounded-md text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                            </svg>
+                                        </button>
+                                    </li>
+                                    <li class="py-3 flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-10 w-10 bg-blue-100 dark:bg-blue-900 rounded-md flex items-center justify-center">
+                                                <svg class="h-6 w-6 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
+                                                </svg>
+                                            </div>
+                                            <div class="ml-4">
+                                                <p class="text-sm font-medium text-gray-900 dark:text-white">Presentation.pptx</p>
+                                                <p class="text-sm text-gray-500 dark:text-gray-400">5.7 MB</p>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="ml-2 bg-white dark:bg-gray-700 rounded-md text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                            </svg>
+                                        </button>
+                                    </li>
+                                    <li class="py-3 flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-10 w-10 bg-yellow-100 dark:bg-yellow-900 rounded-md flex items-center justify-center">
+                                                <svg class="h-6 w-6 text-yellow-600 dark:text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                </svg>
+                                            </div>
+                                            <div class="ml-4">
+                                                <p class="text-sm font-medium text-gray-900 dark:text-white">Vacation.jpg</p>
+                                                <p class="text-sm text-gray-500 dark:text-gray-400">3.2 MB</p>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="ml-2 bg-white dark:bg-gray-700 rounded-md text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                            </svg>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+{% endblock %}
+
