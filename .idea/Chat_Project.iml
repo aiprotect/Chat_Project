@@ -17,7 +17,7 @@
       <sourceFolder url="file://$MODULE_DIR$/django-lang" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.9 virtualenv at ~/PycharmProjects/Chat-Box/Chat_Project/venv" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.9 (Chat_Project)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PyDocumentationSettings">
@@ -30,6 +30,7 @@
       <list>
         <option value="$MODULE_DIR$/templates" />
         <option value="$MODULE_DIR$/accounts/templates" />
+        <option value="$MODULE_DIR$/chat/templates" />
       </list>
     </option>
   </component>

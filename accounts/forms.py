@@ -1,5 +1,7 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
+from hcaptcha.fields import hCaptchaField
+
 from accounts.models import User
 
 
@@ -30,6 +32,15 @@ class LoginForm(forms.Form):
             'class' : 'form-input'
         })
     )
+    h_captcha_response = forms.CharField(required=False, widget=forms.HiddenInput())
+
+    def clean(self):
+        cleaned_data = super().clean()
+        # اعتبارسنجی hCaptcha
+        hcaptcha_response = cleaned_data.get('h_captcha_response')
+        if not hcaptcha_response:
+            raise forms.ValidationError('لطفاً تأیید کنید که ربات نیستید.')
+        return cleaned_data
 
 class RegisterForm(forms.ModelForm):
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={

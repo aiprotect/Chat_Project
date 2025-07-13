@@ -85,7 +85,8 @@ INSTALLED_APPS = [
     'accounts',
     'index',
     'core',
-    'security_app'
+    'security_app',
+    'hcaptcha'
 ]
 
 # زبان‌های راست‌به‌چپ (RTL)
@@ -93,18 +94,19 @@ RTL_LANGUAGES = ['fa', 'ar', 'he']  # کد زبان‌های فارسی، عرب
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'csp.middleware.CSPMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',  # برای فایل‌های استاتیک
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'security_app.logging_middleware.AdvancedMonitoringMiddleware',
+    # 'security_app.logging_middleware.AdvancedMonitoringMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'security_app.super_middleware.AdvancedSecurityMiddleware',
-    'security_app.super_middleware.AdvancedAuthMiddleware',
-    'security_app.super_middleware.RequestLoggingMiddleware',
+    # 'security_app.super_middleware.AdvancedSecurityMiddleware',
+    # 'security_app.super_middleware.AdvancedAuthMiddleware',
+    # 'security_app.super_middleware.RequestLoggingMiddleware',
 ]
 
 # Database
@@ -134,24 +136,17 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Security settings
-SECURITY_ALLOWED_IPS = [
-    '192.168.1.0/24',
-    '10.0.0.0/8',
-    '127.0.0.1'
-]
+# SECURITY_ALLOWED_IPS = [
+#     '192.168.1.0/24',
+#     '10.0.0.0/8',
+#     '127.0.0.1'
+# ]
 
-MALICIOUS_USER_AGENTS = [
-    'nmap', 'sqlmap', 'metasploit', 'nikto',
-    'w3af', 'owasp', 'dirbuster', 'hydra'
-]
-
-# Content Security Policy
-CSP_DEFAULT_SRC = ("'self'",)
-CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'" if DEVELOPMENT_MODE else "'self'")
-CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
-CSP_IMG_SRC = ("'self'", "data:")
-CSP_FONT_SRC = ("'self'",)
-CSP_CONNECT_SRC = ("'self'",)
+# MALICIOUS_USER_AGENTS = [
+#     'nmap', 'sqlmap', 'metasploit', 'nikto',
+#     'w3af', 'owasp', 'dirbuster', 'hydra'
+# ]
+#
 
 # Channels
 CHANNEL_LAYERS = {
@@ -160,8 +155,8 @@ CHANNEL_LAYERS = {
         'CONFIG': {
             "hosts": [(os.getenv('REDIS_HOST', '127.0.0.1'), 6379)],
         },
-    } if not DEVELOPMENT_MODE else {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    # } if not DEVELOPMENT_MODE else {
+    #     "BACKEND": "channels.layers.InMemoryChannelLayer"
     }
 }
 
@@ -211,7 +206,12 @@ LOGGING = {
     },
 }
 
+HCAPTCHA_SITEKEY = '10000000-ffff-ffff-ffff-000000000001'  # کلید تستی
+HCAPTCHA_SECRET = '0x0000000000000000000000000000000000000000'  # کلید تستی
+
 # Custom settings
 AUTH_USER_MODEL = 'accounts.User'
 ASGI_APPLICATION = 'Chat_Project.asgi.application'
 WSGI_APPLICATION = 'Chat_Project.wsgi.application'
+
+CSP_ENABLED = False  #

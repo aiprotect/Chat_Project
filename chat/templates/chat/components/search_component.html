@@ -1,0 +1,43 @@
+  <div id="search-root"></div>
+
+    <!-- کد React رو با Babel داخل صفحه بگذار -->
+    <script type="text/babel">
+        function Search() {
+            const [query, setQuery] = React.useState('');
+            const [results, setResults] = React.useState([]);
+
+            React.useEffect(() => {
+                if (query.length === 0) {
+                    setResults([]);
+                    return;
+                }
+
+                const timeoutId = setTimeout(() => {
+                    fetch(`/search-users/?q=${encodeURIComponent(query)}`)
+                        .then(res => res.json())
+                        .then(data => setResults(data.results))
+                        .catch(() => setResults([]));
+                }, 300); // تاخیر 300 میلی‌ثانیه برای جلوگیری از درخواست‌های پشت سر هم
+
+                return () => clearTimeout(timeoutId);
+            }, [query]);
+
+            return (
+                <div>
+<input
+    type="text"
+    placeholder="جستجوی کاربر..."
+    value="{{ query }}"
+    style="padding: 8px; width: 300px; font-size: 16px;"
+>                    <ul>
+                        {results.map(user => (
+                            <li key={user.id}>{user.username}</li>
+                        ))}
+                    </ul>
+                </div>
+            );
+        }
+
+        // کامپوننت Search رو داخل div با آیدی search-root رندر کن
+        ReactDOM.createRoot(document.getElementById('search-root')).render(<Search />);
+    </script>
